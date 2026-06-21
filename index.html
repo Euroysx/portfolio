@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konan Yannis YOBONOU- Developer & Security Researcher</title>
-    <title>>_</title>
     <style>
         * {
             margin: 0;
@@ -58,9 +57,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 14, 39, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 0px;
             z-index: 1000;
             padding: 1rem 2rem;
             display: flex;
@@ -163,7 +162,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 800;
+            font-weight: 100;
             letter-spacing: -2px;
         }
 
@@ -547,7 +546,9 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-
+            .hero h2 {
+                font-size: 2.0rem;
+            }
             .about-content {
                 grid-template-columns: 1fr;
             }
@@ -583,7 +584,7 @@
 
         /* SCROLLBAR */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -602,10 +603,9 @@
 </head>
 <body>
     <div id="ascii-bg"></div>
-    
     <script>
         // Matrix Rain ASCII Effect - CLEAN VERSION
-        const ASCII_CHARS = '@%#*+=';
+        const ASCII_CHARS = '~!0@1#2$3%4^5&6*7(8)9_+{}|:"<>?*/';
         const asciiContainer = document.getElementById('ascii-bg');
         const canvas = document.createElement('canvas');
         canvas.id = 'ascii-canvas';
@@ -620,13 +620,13 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Rain columns - DENSE RAIN
-        const charWidth = 10;  // Much closer spacing - MORE symbols
-        const charHeight = 20;
+        const charWidth = 5;  // Much closer spacing - MORE symbols
+        const charHeight = 10;
         const columns = Math.floor(canvas.width / charWidth);
         const drops = Array(columns).fill(Math.random() * -100);
 
         let frameCount = 0;
-        const speed = 5; // Slow movement
+        const speed = 4; // Slow movement
 
         function drawMatrixRain() {
             frameCount++;
@@ -636,7 +636,7 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // BRIGHT green text
-            ctx.fillStyle = '#00ff88';
+            ctx.fillStyle = '#363636';
             ctx.font = `bold ${charHeight}px 'Courier New', monospace`;
             ctx.textAlign = 'center';
 
@@ -689,6 +689,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Konan Yannis YOBONOU</h1>
+            <h1>>_</h1>
             <p class="subtitle">Developer & Security Researcher</p>
             <p class="description">
                 AI/Computer Science graduate specializing in Python development, network security, 
