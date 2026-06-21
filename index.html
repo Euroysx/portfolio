@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konan Yannis YOBONOU- Developer & Security Researcher</title>
+    <title>Konan Yannis - Developer & Security Researcher</title>
     <style>
         * {
             margin: 0;
@@ -32,6 +32,24 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        #ascii-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #ascii-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
         /* NAVBAR */
@@ -582,9 +600,82 @@
     </style>
 </head>
 <body>
+    <div id="ascii-bg"></div>
+    
+    <script>
+        // Matrix Rain ASCII Effect - CLEAN VERSION
+        const ASCII_CHARS = '@%#*+=';
+        const asciiContainer = document.getElementById('ascii-bg');
+        const canvas = document.createElement('canvas');
+        canvas.id = 'ascii-canvas';
+        asciiContainer.appendChild(canvas);
+        
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Pure black background
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Rain columns - DENSE RAIN
+        const charWidth = 10;  // Much closer spacing - MORE symbols
+        const charHeight = 20;
+        const columns = Math.floor(canvas.width / charWidth);
+        const drops = Array(columns).fill(Math.random() * -100);
+
+        let frameCount = 0;
+        const speed = 5; // Slow movement
+
+        function drawMatrixRain() {
+            frameCount++;
+
+            // Pure black background
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // BRIGHT green text
+            ctx.fillStyle = '#00ff88';
+            ctx.font = `bold ${charHeight}px 'Courier New', monospace`;
+            ctx.textAlign = 'center';
+
+            // Draw characters - only when frameCount allows
+            if (frameCount % speed === 0) {
+                for (let i = 0; i < drops.length; i++) {
+                    // Reduce randomness - pick 1-2 consistent chars per column
+                    const char = ASCII_CHARS[i % ASCII_CHARS.length];
+                    const x = i * charWidth + charWidth / 2;
+                    const y = drops[i] * charHeight;
+
+                    ctx.fillText(char, x, y);
+
+                    // Reset drop - less frequently
+                    if (y > canvas.height) {
+                        drops[i] = Math.random() * -50 - 10;
+                    } else {
+                        drops[i]++;
+                    }
+                }
+            }
+
+            requestAnimationFrame(drawMatrixRain);
+        }
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Start animation
+        drawMatrixRain();
+    </script>
+
     <!-- NAVBAR -->
     <nav>
-        <a href="#" class="logo">EUROYSX</a>
+        <a href="#" class="logo">KONAN</a>
         <ul class="nav-links">
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -596,7 +687,7 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Konan Yannis YOBONOU</h1>
+            <h1>Konan Yannis</h1>
             <p class="subtitle">Developer & Security Researcher</p>
             <p class="description">
                 AI/Computer Science graduate specializing in Python development, network security, 
